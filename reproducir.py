@@ -7,7 +7,7 @@ uso (en una máquina limpia, dentro del entorno del paquete):
     python reproducir.py --informe canales --mes 2026-09 --api https://men-src.github.io/canales-atencion/
 
 Con --api apuntando a un sitio publicado (o sin --api) descarga los JSON de api/v1 que el informe necesita, genera el
-PDF en --salida y lo compara con el PDF publicado en el portal (--comparar acepta otra URL o un archivo). Con --api
+PDF en --salida y lo compara con el PDF publicado en el sitio de su informe (--comparar acepta otra URL o un archivo). Con --api
 apuntando a una carpeta usa esos datos tal cual (por ejemplo los sintéticos) y no compara salvo que se pida."""
 
 from __future__ import annotations
@@ -58,7 +58,8 @@ POR_BASE = {
     "tramites": ("cubo.json", "resumen.json"),
     "legalizaciones": ("cubo.json", "resumen.json"),
 }
-PORTAL = "https://men-src.github.io/publicaciones/"
+# cada informe publica sus PDF en un sitio propio (D-116); hasta el 2026-11-10 vivían en la carpeta publicaciones/ del portal
+SITIO_PDF = "https://men-src.github.io/publicaciones-{informe}/"
 
 
 def huella(ruta: Path) -> str:
@@ -97,7 +98,7 @@ def main() -> int:
     p.add_argument(
         "--comparar",
         default=None,
-        help="PDF publicado (URL o archivo) con el que se compara; por defecto el del portal",
+        help="PDF publicado (URL o archivo) con el que se compara; por defecto el del sitio de PDF del informe",
     )
     p.add_argument("--sin-comparar", action="store_true")
     a = p.parse_args()
@@ -126,7 +127,7 @@ def main() -> int:
 
     if a.sin_comparar or (a.api and not a.api.startswith("http") and not a.comparar):
         return 0
-    referencia = a.comparar or f"{PORTAL}{a.informe}/{patron.format(mes=a.mes)}"
+    referencia = a.comparar or SITIO_PDF.format(informe=a.informe) + patron.format(mes=a.mes)
     publicado = salida / ("publicado-" + patron.format(mes=a.mes))
     if referencia.startswith("http"):
         descargar(referencia, publicado)

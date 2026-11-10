@@ -1,1 +1,2 @@
 paquete armado el 2026-10-29 desde el commit 2ff2fb2aca1f4dccc67d16563facdf687e123d05
+reproducir.py y README.md actualizados el 2026-11-10 desde el commit 1caa2a60b71f5897224b36e6e30ea4af219421da: los PDF publicados pasaron a un sitio por informe (https://men-src.github.io/publicaciones-<informe>/)

@@ -1,6 +1,6 @@
 # Paquete de reproducibilidad · Plataforma de Analítica de Datos (Ministerio de Educación Nacional)
 
-Este paquete permite a cualquier persona regenerar, en una máquina limpia, un informe en PDF de la plataforma a partir de los agregados que ya están publicados en los sitios de los informes, y comprobar que el archivo sale byte a byte igual al publicado en el portal (https://men-src.github.io/). También trae datos sintéticos para probar el flujo sin red y sin datos reales.
+Este paquete permite a cualquier persona regenerar, en una máquina limpia, un informe en PDF de la plataforma a partir de los agregados que ya están publicados en los sitios de los informes, y comprobar que el archivo sale byte a byte igual al publicado. El portal (https://men-src.github.io/publicaciones/) lista los PDF y cada informe los sirve en su propio sitio, https://men-src.github.io/publicaciones-<informe>/. También trae datos sintéticos para probar el flujo sin red y sin datos reales.
 
 Lo que contiene:
 
